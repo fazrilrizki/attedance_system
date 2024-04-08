@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-auth-session-status class="mb-4" :status="session('status')" />
     <x-slot:title>Login</x-slot:title>
     <main class="mt-0 transition-all duration-200 ease-in-out">
         <section>
@@ -14,14 +15,17 @@
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="flex-auto p-6">
-                                    <form role="form">
+                                    <form method="POST" action="{{ route('login') }}" role="form">
+                                        @csrf
                                         <div class="mb-4">
-                                            <input type="email" placeholder="Email"
+                                            <input type="email" name="email" id="email" placeholder="Email"
                                                 class="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                         <div class="mb-4">
-                                            <input type="password" placeholder="Password"
+                                            <input type="password" name="password" id="password" placeholder="Password"
                                                 class="focus:shadow-primary-outline dark:bg-gray-950 dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding p-3 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none" />
+                                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         </div>
                                         <div class="flex items-center pl-12 mb-0.5 text-left min-h-6">
                                             <input id="rememberMe"
@@ -32,7 +36,7 @@
                                                 for="rememberMe">Remember me</label>
                                         </div>
                                         <div class="text-center">
-                                            <button type="button"
+                                            <button type="submit"
                                                 class="inline-block w-full px-16 py-3.5 mt-6 mb-0 font-bold leading-normal text-center text-white align-middle transition-all bg-blue-500 border-0 rounded-lg cursor-pointer hover:-translate-y-px active:opacity-85 hover:shadow-xs text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25">Sign
                                                 in</button>
                                         </div>
