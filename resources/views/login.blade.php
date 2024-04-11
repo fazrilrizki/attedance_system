@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    
     <x-slot:title>Login</x-slot:title>
     <main class="mt-0 transition-all duration-200 ease-in-out">
         <section>
@@ -15,7 +15,7 @@
                                     <p class="mb-0">Enter your email and password to sign in</p>
                                 </div>
                                 <div class="flex-auto p-6">
-                                    <form method="POST" action="{{ route('login') }}" role="form">
+                                    <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="mb-4">
                                             <input type="email" name="email" id="email" placeholder="Email"

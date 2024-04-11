@@ -1,4 +1,5 @@
 <x-app-layout>
+    <x-auth-session-status class="mb-4" :status="session('status')" />
     <x-slot:title>Dashboard</x-slot:title>
     <!-- cards -->
     <div class="w-full px-6 py-6 mx-auto">
